@@ -1,11 +1,13 @@
 
 <template>
-  <div>
-    <div class="container" ref="container">
-      <div id="paint" ref="paint">
-        <canvas id="myCanvas" ref="myCanvas"></canvas>
-      </div>
-    </div>
+  <div class="container" ref="container">
+    <v-row justify="center">
+      <v-card ref="card" :width="cardWidth" :height="cardWidth">
+        <div id="paint" ref="paint">
+          <canvas id="myCanvas" ref="myCanvas"></canvas>
+        </div>
+      </v-card>
+    </v-row>
   </div>
 </template>
 <script>
@@ -19,18 +21,16 @@ export default {
     data() {
       return {
         canvas: null,
-        ctx: null
+        ctx: null,
+        cardWidth: 480
       };
     },
     emit: function(image) {
       this.$emit("change", image);
     },
     clear: function() {
-      //   var canvas = this.$refs.myCanvas;
-      //   var ctx = canvas.getContext("2d");
       this.ctx.setTransform(1, 0, 0, 1, 0, 0);
       this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-      //   this.ctx.clearRect(0, 0, 400, 400);
       this.ctx.fillStyle = "rgb(255, 255, 255)";
       this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     }
@@ -43,14 +43,13 @@ export default {
     var canvas = this.canvas;
     var ctx = this.ctx;
 
-    // var painting = this.$refs.paint;
-    // var paint_style = getComputedStyle(painting);
-    // canvas.width = parseInt(paint_style.getPropertyValue("width"));
-    // canvas.height = parseInt(paint_style.getPropertyValue("height"));
-    canvas.height = this.width ? this.width : 400;
-    canvas.width = this.height ? this.height : 400;
+    var containerRect = this.$refs.container.getBoundingClientRect();
 
-    // clearArea();
+    canvas.width =
+      containerRect.width < this.width ? containerRect.width - 50 : this.width;
+    canvas.height = canvas.width;
+    this.cardWidth = canvas.width;
+
     this.clear();
 
     var mouse = {
@@ -59,32 +58,39 @@ export default {
     };
 
     // Mouvement
-    var rect = this.$refs.container.getBoundingClientRect();
+    var rect = this.$refs.paint.getBoundingClientRect();
     var move = function(e) {
+      e.preventDefault();
       mouse.x = e.pageX - rect.left;
       mouse.y = e.pageY - rect.top;
-      //   mouse.x = e.pageX;
-      //   mouse.y = e.pageY;
-      //   mouse.x = e.pageX - this.offsetLeft;
-      //   mouse.y = e.pageY - this.offsetTop;
+    };
+    var touchmove = function(e) {
+      var touch = e.touches[0];
+
+      mouse.x = touch.clientX - rect.left;
+      mouse.y = touch.clientY - rect.top;
     };
     canvas.addEventListener("mousemove", move, false);
-    canvas.addEventListener("touchmove", move, false);
+    canvas.addEventListener("touchmove", touchmove, false);
 
     ctx.lineWidth = 20;
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
     ctx.strokeStyle = "#000000";
 
-    var debutTrait = function() {
-      ctx.beginPath();
+    var debutTrait = function(e) {
+      e.preventDefault();
       ctx.moveTo(mouse.x, mouse.y);
+      ctx.beginPath();
 
       canvas.addEventListener("mousemove", onPaint, false);
+      canvas.addEventListener("touchmove", onPaint, false);
     };
     var emit = this.emit;
-    var finTrait = function() {
+    var finTrait = function(e) {
+      e.preventDefault();
       canvas.removeEventListener("mousemove", onPaint, false);
+      canvas.removeEventListener("touchmove", onPaint, false);
       emit(canvas.toDataURL("image/png"));
     };
 
@@ -98,14 +104,6 @@ export default {
       ctx.lineTo(mouse.x, mouse.y);
       ctx.stroke();
     };
-    // Réinitialiser
-    // function clearArea() {
-    //   // Use the identity matrix while clearing the canvas
-    //   ctx.setTransform(1, 0, 0, 1, 0, 0);
-    //   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    //   ctx.fillStyle = "rgb(255, 255, 255)";
-    //   ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-    // }
   }
 };
 

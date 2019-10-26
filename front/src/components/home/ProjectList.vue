@@ -3,9 +3,13 @@
     <v-row>
       <v-col cols="12">
         <v-row class="sm3 xs12" justify="center">
-          <ProjectCard title="GuessMyNumber" image="guess_my_number.png" routeName="GuessMyNumber" />
           <ProjectCard
-            title="GuessMyHiragana"
+            title="Guess my number"
+            image="guess_my_number.png"
+            routeName="GuessMyNumber"
+          />
+          <ProjectCard
+            title="Guess my hiragana"
             image="guess_my_hiragana.png"
             routeName="GuessMyHiragana"
           />

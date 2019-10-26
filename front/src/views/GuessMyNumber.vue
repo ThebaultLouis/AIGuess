@@ -7,12 +7,7 @@
             <h1>Guess my number</h1>
           </v-row>
           <v-row justify="center" ref="canvasRow">
-            <Canvas
-              v-model="image"
-              ref="canvas"
-              :width="canvasRect.width"
-              :height="canvasRect.width"
-            />
+            <Canvas v-model="image" ref="canvas" width="480" />
           </v-row>
           <v-row justify="center">
             <v-btn
@@ -23,13 +18,10 @@
               class="title"
             >Guess My Number</v-btn>
           </v-row>
-          <v-row class="headline my-2" justify="center" v-if="answer">I guessed a {{answer}}</v-row>
+          <v-row class="headline my-2" justify="center" v-if="answer">I guessed {{answer}}</v-row>
         </v-col>
       </v-row>
     </div>
-
-    <!-- <v-img :src="image" width="100px" height="100px"></v-img> -->
-    <!-- <img :src="image" width="100px" height="100px" /> -->
   </div>
 </template>
 <script>
@@ -46,14 +38,6 @@ export default {
       guessingLoading: false,
       canvasRect: {}
     };
-  },
-  mounted: function() {
-    var rect = this.$refs.canvasRow.getBoundingClientRect();
-    // console.log(rect);
-    this.canvasRect = {
-      width: rect.width < 400 ? rect.width - 50 : 400
-    };
-    // console.log(this.canvasRect);
   },
   methods: {
     guess: function() {

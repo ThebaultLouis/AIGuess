@@ -2,32 +2,21 @@
   <v-app>
     <v-app-bar app>
       <v-toolbar-title class="headline text-uppercase">
-        <span>AI</span>
-        <span class="font-weight-light">GUESS</span>
+        <div @click="$router.push('/')" :style="{cursor: 'pointer'}">
+          <span>AI</span>
+          <span class="font-weight-light">GUESS</span>
+        </div>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <!-- <v-btn
-        text
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>fas fa-external-link-alt</v-icon>
-      </v-btn>-->
     </v-app-bar>
 
     <v-content>
-      <!-- <ProjectList /> -->
-      <!-- <HelloWorld /> -->
       <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-// import HelloWorld from "@/components/HelloWorld";
-// import ProjectList from "./components/home/ProjectList";
-
 export default {
   name: "App",
   components: {
