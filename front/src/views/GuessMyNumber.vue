@@ -11,14 +11,18 @@
           </v-row>
           <v-row justify="center">
             <v-btn
-              color="success"
+              color="indigo darken-1"
+              outlined
               @click="guess"
               :loading="guessingLoading"
               large
               class="title"
             >Guess My Number</v-btn>
           </v-row>
-          <v-row class="headline my-2" justify="center" v-if="answer">I guessed {{answer}}</v-row>
+          <v-row class="headline my-2" justify="center" v-if="answer">
+            I guessed
+            <span class="font-weight-bold">{{answer}}</span>
+          </v-row>
         </v-col>
       </v-row>
     </div>
@@ -27,6 +31,8 @@
 <script>
 import Canvas from "@/components/Canvas";
 import Axios from "axios";
+import Config from "@/config.js";
+
 export default {
   components: {
     Canvas
@@ -42,7 +48,7 @@ export default {
   methods: {
     guess: function() {
       this.guessingLoading = true;
-      Axios.post("http://guessmynumber.ml/guess", {
+      Axios.post(`${Config.apiUrl}/guessmynumber`, {
         image: this.image
       })
         .then(res => {

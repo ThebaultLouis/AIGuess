@@ -2,7 +2,7 @@
 <template>
   <div class="container" ref="container">
     <v-row justify="center">
-      <v-card ref="card" :width="cardWidth" :height="cardWidth">
+      <v-card ref="card" :width="cardWidth" :height="cardWidth" elevation="4">
         <div id="paint" ref="paint">
           <canvas id="myCanvas" ref="myCanvas"></canvas>
         </div>

@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app>
+    <v-app-bar app color="grey lighten-2">
       <v-toolbar-title class="headline text-uppercase">
         <div @click="$router.push('/')" :style="{cursor: 'pointer'}">
           <span>AI</span>
@@ -13,6 +13,7 @@
     <v-content>
       <router-view></router-view>
     </v-content>
+    <v-footer></v-footer>
   </v-app>
 </template>
 
