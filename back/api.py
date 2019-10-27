@@ -4,7 +4,7 @@ from flask import render_template
 import random as rd
 from flask import request
 import numpy as np
-from convnet import ConvNet
+from cnn import ConvNet
 import base64
 import cv2
 from tensorflow.keras import backend as K

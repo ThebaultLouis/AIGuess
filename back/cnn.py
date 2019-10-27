@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import tensorflow as tf
+import pandas as pd
 #from random import choices
 
 from tensorflow.keras.models import Sequential
@@ -50,8 +51,9 @@ class ConvNet:
         print("model saved\n")
 
     def prediction(self,image):
+        mapping = pd.read_csv("db/k49_classmap.csv")
         image = image.reshape(1,image.shape[0], image.shape[1],1)
         image /= 255
-        res = self.model.predict(image)
-        return np.argmax(res)
+        ind = np.argmax(self.model.predict(image))
+        return mapping[ind][3]
     
