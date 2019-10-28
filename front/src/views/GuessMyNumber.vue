@@ -31,7 +31,7 @@
 <script>
 import Canvas from "@/components/Canvas";
 import Axios from "axios";
-import Config from "@/config.js";
+// import Config from "@/config.js";
 
 export default {
   components: {
@@ -49,8 +49,8 @@ export default {
     guess: function() {
       this.guessingLoading = true;
 
-      // Axios.post("http://guessmynumber.ml/guess", {
-      Axios.post(`${Config.apiUrl}/guessmynumber`, {
+      Axios.post("http://guessmynumber.ml/guess", {
+        // Axios.post(`${Config.apiUrl}/guessmynumber`, {
         image: this.image
       })
         .then(res => {
@@ -58,9 +58,8 @@ export default {
           this.answer = res.data.number;
           this.$refs.canvas.clear();
         })
-        .catch(e => {
+        .catch(() => {
           this.guessingLoading = false;
-          console.log(e);
           this.$refs.canvas.clear();
         });
     }

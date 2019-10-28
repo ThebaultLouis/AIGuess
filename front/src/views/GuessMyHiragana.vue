@@ -20,8 +20,8 @@
             >Guess my hiragana</v-btn>
           </v-row>
           <v-row class="headline my-2" justify="center" v-if="answer">
-            I guessed:
-            <span class="font-weight-bold">{{answer}}</span>
+            I guessed
+            <span class="font-weight-bold ml-1">{{answer}}</span>
           </v-row>
         </v-col>
       </v-row>
@@ -56,9 +56,8 @@ export default {
           this.answer = res.data.romanji;
           this.$refs.canvas.clear();
         })
-        .catch(e => {
+        .catch(() => {
           this.guessingLoading = false;
-          console.log(e);
           this.$refs.canvas.clear();
         });
     }

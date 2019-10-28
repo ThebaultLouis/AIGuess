@@ -68,7 +68,7 @@ export default {
     var touchmove = function(e) {
       var touch = e.touches[0];
 
-      mouse.x = touch.clientX - rect.left;
+      mouse.x = touch.clientX + rect.left;
       mouse.y = touch.clientY - rect.top;
     };
     canvas.addEventListener("mousemove", move, false);
