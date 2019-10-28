@@ -17,14 +17,14 @@ export default {
     prop: "image",
     event: "change"
   },
+  data() {
+    return {
+      canvas: null,
+      ctx: null,
+      cardWidth: 480
+    };
+  },
   methods: {
-    data() {
-      return {
-        canvas: null,
-        ctx: null,
-        cardWidth: 480
-      };
-    },
     emit: function(image) {
       this.$emit("change", image);
     },
@@ -35,6 +35,7 @@ export default {
       this.ctx.fillRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
     }
   },
+
   mounted: function() {
     localStorage.setItem("image", JSON.stringify([]));
     // Initialisation Canvas

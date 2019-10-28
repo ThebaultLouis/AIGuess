@@ -14,7 +14,7 @@ app = flask.Flask(__name__)
 imsize = 28
 
 
-@app.route("/api")
+@app.route("/")
 def index():
     return render_template('index.html')
 
