@@ -20,7 +20,7 @@
             >Guess my hiragana</v-btn>
           </v-row>
           <v-row class="headline my-2" justify="center" v-if="answer">
-            I guessed
+            I guessed:
             <span class="font-weight-bold">{{answer}}</span>
           </v-row>
         </v-col>

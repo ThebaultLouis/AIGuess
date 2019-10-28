@@ -55,5 +55,5 @@ class ConvNet:
         image = image.reshape(1,image.shape[0], image.shape[1],1)
         image /= 255
         ind = np.argmax(self.model.predict(image))
-        return mapping[ind][3]
+        return mapping.values[ind][3]
     

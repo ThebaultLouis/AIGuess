@@ -11,9 +11,10 @@ from tensorflow.keras import backend as K
 from tensorflow.keras.models import model_from_json
 
 from flask_cors import CORS, cross_origin
-CORS(app)
 
 app = flask.Flask(__name__)
+CORS(app)
+
 imsize = 28
 
 
