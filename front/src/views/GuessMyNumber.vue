@@ -21,7 +21,7 @@
           </v-row>
           <v-row class="headline my-2" justify="center" v-if="answer">
             I guessed
-            <span class="font-weight-bold">{{answer}}</span>
+            <span class="font-weight-bold ml-1">{{answer}}</span>
           </v-row>
         </v-col>
       </v-row>
@@ -48,6 +48,8 @@ export default {
   methods: {
     guess: function() {
       this.guessingLoading = true;
+
+      // Axios.post("http://guessmynumber.ml/guess", {
       Axios.post(`${Config.apiUrl}/guessmynumber`, {
         image: this.image
       })
