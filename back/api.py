@@ -10,6 +10,9 @@ import cv2
 from tensorflow.keras import backend as K
 from tensorflow.keras.models import model_from_json
 
+from flask_cors import CORS, cross_origin
+CORS(app)
+
 app = flask.Flask(__name__)
 imsize = 28
 
@@ -20,6 +23,7 @@ def index():
 
 
 @app.route("/api/guessmyhiragana", methods=['POST'])
+@cross_origin()
 def main():
     jsonResponse = json.loads(request.data.decode('utf-8'))
     image = jsonResponse['image']
