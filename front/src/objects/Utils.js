@@ -3,6 +3,4 @@ function random(min, max) {
   return num;
 }
 
-export default {
-  random
-};
+export { random };

@@ -21,20 +21,16 @@
         </v-row>
         <v-row>
           <v-col offset="1">
-            <h1 class="display-1">Système multi-agents</h1>
+            <h1 class="display-1">Systèmes multi-agents</h1>
           </v-col>
         </v-row>
         <v-row class="sm3 xs12" justify="center">
           <ProjectCard
             title="Balles rebondissantes"
-            image="guess_my_number.png"
+            image="bouncing_balls.png"
             routeName="BouncingBalls"
           />
-          <ProjectCard
-            title="Jeu de la vie de Conway"
-            image="guess_my_number.png"
-            routeName="LifeGame"
-          />
+          <ProjectCard title="Jeu de la vie de Conway" image="life_game.png" routeName="LifeGame" />
         </v-row>
       </v-col>
     </v-row>
