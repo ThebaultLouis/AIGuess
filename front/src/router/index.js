@@ -5,6 +5,7 @@ import GuessMyHiragana from "../views/GuessMyHiragana.vue";
 import GuessMyNumber from "../views/GuessMyNumber.vue";
 import BouncingBalls from "../views/BouncingBalls.vue";
 import LifeGame from "../views/LifeGame.vue";
+import MigrationGame from "../views/MigrationGame.vue";
 
 Vue.use(VueRouter);
 
@@ -33,6 +34,11 @@ const routes = [
     path: "/lifeGame",
     name: "LifeGame",
     component: LifeGame
+  },
+  {
+    path: "/migrationGame",
+    name: "MigrationGame",
+    component: MigrationGame
   },
 
   {

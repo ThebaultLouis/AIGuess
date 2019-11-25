@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import Cell from "@/objects/cellular_automaton/lifeGameCell";
+import Cell from "@/objects/cellular_automaton/MigrationGameCell";
 import { random } from "@/objects/Utils";
 // import Cells from "@/objects/cellular_automaton/Cells";
 
@@ -56,6 +56,7 @@ export default {
       var frame_cpt = 0;
       // var pid = this.pid;
       var e = this;
+      var nEtats = 4;
 
       function loop() {
         if (frame_cpt == 0) {
@@ -64,7 +65,7 @@ export default {
           if (!init) {
             for (var y = 0; y < height; y++) {
               for (var x = 0; x < width; x++) {
-                var cell = new Cell(x, y, random(0, 1), radius);
+                var cell = new Cell(x, y, random(0, nEtats - 1), radius);
                 cells[y][x] = cell;
               }
             }

@@ -1,7 +1,17 @@
 import Point from "./Position.js";
 
-var WHITE = "rgb(255,255,255)";
-var BLACK = "rgb(0,0,0)";
+// var WHITE = "rgb(255,255,255)";
+// var BLACK = "rgb(0,0,0)";
+var COLORS = [
+  "rgb(255,255,255)",
+  "rgb(0,0,0)",
+  "rgb(255,0,0)",
+  "rgb(0,255,0)",
+  "rgb(0,0,255)",
+  "rgb(255,255,0)",
+  "rgb(0,255,255)"
+];
+var N_ETAT = 4;
 
 export default class LifeGameCell {
   constructor(x, y, state, radius) {
@@ -12,7 +22,8 @@ export default class LifeGameCell {
   }
   draw(ctx) {
     ctx.beginPath();
-    ctx.fillStyle = this.state ? BLACK : WHITE;
+    // ctx.fillStyle = this.state ? BLACK : WHITE;
+    ctx.fillStyle = COLORS[this.state];
     ctx.fillRect(
       this.position.x * this.radius,
       this.position.y * this.radius,
@@ -25,16 +36,13 @@ export default class LifeGameCell {
     this.nbVoisins = 0;
   }
   addNeighbor(other) {
-    if (other.state == 1) {
+    if (other.state == Math.floor((this.state + 1) % N_ETAT)) {
       this.nbVoisins++;
     }
   }
   changeState() {
-    if (this.state && (this.nbVoisins < 2 || this.nbVoisins > 3)) {
-      this.state = 0;
-    }
-    if (!this.state && this.nbVoisins == 3) {
-      this.state = 1;
+    if (this.nbVoisins >= 3) {
+      this.state = Math.floor((this.state + 1) % N_ETAT);
     }
   }
   display() {
