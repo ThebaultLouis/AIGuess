@@ -30,9 +30,9 @@ export default class LifeGameCell {
     if (other.state == 1) {
       this.nbVoisins++;
     }
-    if (this.state == 1) {
-      other.nbVoisins++;
-    }
+    // if (this.state == 1) {
+    //   other.nbVoisins++;
+    // }
   }
   changeState() {
     if (this.state && (this.nbVoisins < 2 || this.nbVoisins > 3)) {
